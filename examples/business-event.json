@@ -1,0 +1,15 @@
+{
+  "event_id": "evt_01J9K8M2N4P6Q7R8S9T0",
+  "event_type": "order.status_changed",
+  "schema_version": 1,
+  "occurred_at": "2026-10-31T09:30:00Z",
+  "aggregate_type": "order",
+  "aggregate_id": "order_84721",
+  "correlation_id": "corr_6f4a2b",
+  "data": {
+    "customer_ref": "customer_392",
+    "order_ref": "order_84721",
+    "new_status": "shipped",
+    "locale": "en-IN"
+  }
+}
