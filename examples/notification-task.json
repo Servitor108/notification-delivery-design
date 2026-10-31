@@ -1,0 +1,17 @@
+{
+  "task_id": "task_01J9K8Q3T5V7W8X9Y0Z1",
+  "notification_id": "ntf_01J9K8P1R3S5T6U7V8W9",
+  "schema_version": 1,
+  "channel": "whatsapp",
+  "provider": "provider-adapter-default",
+  "recipient_ref": "customer_392",
+  "template": {
+    "id": "order_shipped",
+    "version": 3,
+    "locale": "en-IN"
+  },
+  "idempotency_key": "order_84721:shipped:customer_392:whatsapp",
+  "expires_at": "2026-11-01T09:30:00Z",
+  "correlation_id": "corr_6f4a2b",
+  "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+}
