@@ -1,0 +1,14 @@
+flowchart LR
+    A[Business services] -->|Domain event| K[(Kafka topic)]
+    K --> C[Notification event consumer]
+    C -->|DB transaction| DB[(Notification DB and outbox)]
+    DB --> O[Outbox publisher]
+    O -->|Delivery task| Q[(Amazon SQS)]
+    Q --> W[Golang delivery workers]
+    W -->|Send API| P[External messaging provider]
+    P -->|Webhook / receipt| H[Callback API]
+    H --> DB
+    W -->|Attempt outcome| DB
+    Q -->|Redrive policy| DLQ[(Dead-letter queue)]
+    DLQ --> R[Operator review and safe replay]
+    R --> Q
