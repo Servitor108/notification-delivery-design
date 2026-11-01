@@ -1,0 +1,23 @@
+name: Go implementation CI
+on:
+  push:
+    paths:
+      - 'implementation/**'
+      - '.github/workflows/implementation.yml'
+  pull_request:
+    paths:
+      - 'implementation/**'
+      - '.github/workflows/implementation.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: implementation
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache-dependency-path: implementation/go.mod
+      - run: go test -race ./...
