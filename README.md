@@ -1,5 +1,15 @@
 # Event-Driven Notification Delivery Service
 
+**This repository now contains both the system design and runnable Go code.**
+
+- **Architecture and design:** the proposal below covers Kafka, SQS, transactional outbox, delivery workers, retries, DLQ, provider callbacks, observability, and security.
+- **Go implementation:** see [implementation/](implementation/README.md) for a runnable HTTP API, idempotency, concurrent workers, a provider adapter, retry/backoff logic, and tests.
+- **Run the code:** `cd implementation && go test -race ./... && go run ./cmd/api` (Go 1.22+).
+
+The current Go slice uses an in-memory repository and a demo provider so it can run locally without cloud credentials. It does **not** yet implement the Kafka/SQS/PostgreSQL production architecture described below. Those are explicit next implementation stages, not existing features.
+
+---
+
 **Author:** Ankit Yadav  
 **Document type:** Independent system-design portfolio sample  
 **Status:** Proposed architecture
