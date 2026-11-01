@@ -100,7 +100,6 @@ func (p *Pool) Shutdown(ctx context.Context) error {
 		return nil
 	case <-ctx.Done():
 		p.cancel()
-		<-done
 		return ctx.Err()
 	}
 }
