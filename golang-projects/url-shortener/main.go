@@ -20,10 +20,14 @@ type store struct {
 
 func newStore() *store { return &store{urls: make(map[string]string)} }
 
-func (s *store) save(code, target string) {
+func (s *store) insertIfAbsent(code, target string) bool {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	if _, exists := s.urls[code]; exists {
+		return false
+	}
 	s.urls[code] = target
+	return true
 }
 
 func (s *store) get(code string) (string, bool) {
@@ -106,10 +110,9 @@ func (s *server) shorten(w http.ResponseWriter, r *http.Request) {
 			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not generate short code"})
 			return
 		}
-		if _, exists := s.store.get(code); exists {
+		if !s.store.insertIfAbsent(code, req.URL) {
 			continue
 		}
-		s.store.save(code, req.URL)
 		writeJSON(w, http.StatusCreated, shortenResponse{Code: code, ShortPath: "/" + code})
 		return
 	}
